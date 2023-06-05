@@ -24,4 +24,7 @@ public class Item {
 
     @Column
     private int discountPer;
+
+    @Column
+    private String Content;
 }

@@ -1,12 +1,12 @@
 package org.africalib.gallery.backend.controller;
 
+
 import io.jsonwebtoken.Claims;
-import org.africalib.gallery.backend.entity.Item;
-import org.africalib.gallery.backend.entity.Member;
-import org.africalib.gallery.backend.repository.ItemRepository;
-import org.africalib.gallery.backend.repository.MemberRepository;
+
+
+import org.africalib.gallery.backend.entity.Board;
+import org.africalib.gallery.backend.repository.BoardRepository;
 import org.africalib.gallery.backend.service.JwtService;
-import org.africalib.gallery.backend.service.JwtServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +15,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Map;
 
 @RestController
 public class AccountController {
 
     @Autowired
-    MemberRepository memberRepository;
+    BoardRepository memberRepository;
 
     @Autowired
     JwtService jwtService;
@@ -30,10 +29,10 @@ public class AccountController {
     @PostMapping("/api/account/login")
     public ResponseEntity login(@RequestBody Map<String, String> params,
                                 HttpServletResponse res) {
-        Member member = memberRepository.findByEmailAndPassword(params.get("email"), params.get("password"));
+        Board member = memberRepository.findByEmailAndPassword(params.get("email"), params.get("password"));
 
         if (member != null) {
-            int id = member.getId();
+            Long id = member.getId();
             String token = jwtService.getToken("id", id);
 
             Cookie cookie = new Cookie("token", token);
