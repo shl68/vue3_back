@@ -24,12 +24,12 @@ public class Order {
     @Column(length = 500, nullable = false)
     private String address;
 
-    @Column(length = 10, nullable = false)
+    @Column
     private String payment;
 
     @Column(length = 16)
     private String cardNumber;
 
-    @Column(length = 500, nullable = false)
+    @Column(length = 500)
     private String items;
 }

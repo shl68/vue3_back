@@ -31,11 +31,9 @@ public class POrderController {
     public ResponseEntity getOrder(
             @CookieValue(value = "token", required = false) String token
     ) {
-
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
-
         int memberId = jwtService.getId(token);
         List<POrder> porders = PorderRepository.findByMemberIdOrderByIdDesc(memberId);
         return new ResponseEntity<>(porders, HttpStatus.OK);
@@ -46,11 +44,9 @@ public class POrderController {
             @RequestBody POrderDto dto,
             @CookieValue(value = "token", required = false) String token
     ) {
-
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
-
         int memberId = jwtService.getId(token);
         POrder newOrder = new POrder();
 
@@ -59,11 +55,9 @@ public class POrderController {
         newOrder.setAddress(dto.getAddress());
         newOrder.setPayment(dto.getPayment());
         newOrder.setCardNumber(dto.getCardNumber());
-//        newOrder.setPitems(dto.getPitems());
-
+        newOrder.setPitems(dto.getPitems());
         PorderRepository.save(newOrder);
         PcartRepository.deleteByMemberId(memberId);
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -19,4 +19,7 @@ public class Board {
     @Column
     private String password;
 
+    @Column
+    private String good;
+
 }
