@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/boards")
-public class BoardController {
+public class BoardController {  //BoardController
     private final BoardService boardService;
 
     @Autowired
