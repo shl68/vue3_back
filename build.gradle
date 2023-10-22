@@ -28,6 +28,13 @@ dependencies {
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 
+	// 10.18 추가
+	implementation 'org.jsoup:jsoup:1.14.3'
+	// 10.18 추가
+	implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+	implementation 'org.seleniumhq.selenium:selenium-chrome-driver:3.141.59'
+
+
 }
 tasks.named('test') {
 	useJUnitPlatform()
